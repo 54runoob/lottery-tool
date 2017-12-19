@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>酒会抽奖系统</title>
+    <meta charset="utf-8">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+  <div class="lottery-fullscreen">
+    <!--[if lt IE 10]>
+    <p class="browsehappy">您的浏览器太老了，请到<a href="http://browsehappy.com/">下载一个新版浏览器</a>。</p>
+    <![endif]-->
+    <nav>
+      <a href="?all">所有人</a>
+      <a href="?tester">组1</a>
+      <a href="?apper">组2</a>
+      <a href="?member">组3</a>
+      <a href="?wder">组4</a>
+      <a href="reset.html">设置</a>
+    </nav>
+    <button id="go" data-text-start="按空格开始" data-text-stop="按空格停止" data-action="start"></button>
+    <div id="container">
+      <ul id="balls">
+        <div class="reference"></div>
+      </ul>
+      <!--中奖list-->
+      <div class="lottery-title">中奖名单:</div>
+      <ul id="lucky-balls">
+      </ul>
+    </div>
+
+    <!--抽奖按钮
+    <div class="lottery-btn">抽奖</div>-->
+  </div>
+    <script src="sea.js"></script>
+    <script>
+      function getStore(name) {
+        if (!name) return;
+        var value;
+        try {
+          value = JSON.parse(window.localStorage.getItem(name))
+        } catch (e) {
+          value = window.localStorage.getItem(name)
+        }
+        return value
+      }
+      var query = location.search.slice(1) || 'all';
+      seajs.use(['./lucky', './data-' + query], function(Lucky, data) {
+//        console.log(data);
+        var hasLuckyData = getStore('HASLUCKYDATA');
+        if(hasLuckyData) {
+          for (var j=0;j<hasLuckyData.length;j++) {
+            $("#lucky-balls").append('<li class="selected" style="left: 350px; top: 150px;">' + hasLuckyData[j].name +'</li>')
+            for (var i=0;i<data.length; i++) {
+//              console.log(hasLuckyData[j].name)
+              if(data[i] == hasLuckyData[j].name.toString()) {
+//                console.log(i);
+                data.splice(i, 1);
+                break;
+              }
+            }
+          }
+        }
+//        console.log(data)
+//        console.log(getStore('HASLUCKYDATA'));
+        Lucky.init(data)
+      })
+    </script>
+  </body>
+</html>

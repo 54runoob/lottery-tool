@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设置</title>
+</head>
+<body>
+    <button id="reset">重设</button>
+    <button id="backToLottery">返回抽奖</button>
+</body>
+<script>
+    function removeStore(name) {
+        if (!name) return
+        try {
+            window.localStorage.removeItem(name);
+            alert("操作成功！");
+        }catch (e) {
+            alert("操作失败！请重新操作~")
+        }
+
+    }
+    document.getElementById("reset").addEventListener("click",function(e){
+        e.preventDefault();
+        var r=confirm("确定进行此操作？")
+        if(r) {
+            removeStore("HASLUCKYDATA");
+        } else {
+            return
+        }
+
+    }, false);
+    document.getElementById("backToLottery").addEventListener("click",function(e){
+        e.preventDefault();
+        window.location.href = './index.html';
+    },false)
+</script>
+</html>
