@@ -3,17 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>设置</title>
+    <style>
+        .btn{
+            border:none;
+            outline: 0 none;
+            position: relative;
+            float: left;
+            margin-left: 30px;
+            width: 120px;
+            font-size:16px;
+            height: 40px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            -webkit-border-radius: 30px;
+            border-radius: 20px;
+            -webkit-box-shadow: 0 2px 8px rgba(0,0,0,.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,.1);
+        }
+        .btn:hover{
+            cursor: pointer;
+        }
+        .btn:hover:before {
+            display: block;
+        }
+        .btn:before {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,.1);
+        }
+        .gradient-hor-og {
+            background: #ffae12;
+            background: -moz-linear-gradient(left,#ffae12 0,#f07d17 100%);
+            background: -webkit-gradient(linear,left,right,color-stop(0,#ffae12),color-stop(100%,#f07d17));
+            background: -webkit-linear-gradient(left,#ffae12 0,#f07d17 100%);
+            background: -o-linear-gradient(left,#ffae12 0,#f07d17 100%);
+            background: -ms-linear-gradient(left,#ffae12 0,#f07d17 100%);
+            background: -webkit-gradient(linear,left top,right top,from(#ffae12),to(#f07d17));
+            background: -webkit-gradient(linear,left top,right top,color-stop(0,#ffae12),to(#f07d17));
+            background: -webkit-gradient(linear,left top,right top,color-stop(0,#ffae12),to(#f07d17));
+            background: -webkit-gradient(linear,left top,right top,color-stop(0,#ffae12),to(#f07d17));
+            background: -webkit-gradient(linear,left top,right top,color-stop(0,#ffae12),to(#f07d17));
+            background: linear-gradient(to right,#ffae12 0,#f07d17 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#ffae12, endColorstr=#f07d17);
+            -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=1, startColorstr=#ffae12, endColorstr=#f07d17)";
+        }
+    </style>
 </head>
 <body>
-    <button id="reset">重设</button>
-    <button id="backToLottery">返回抽奖</button>
+    <div class="btn gradient-hor-og" id="reset">重置抽奖</div>
+    <div class="btn gradient-hor-og" id="backToLottery">返回抽奖</div>
+    <a href="index.html?all2"><div class="btn gradient-hor-og">测试</div></a>
 </body>
 <script>
     function removeStore(name) {
         if (!name) return
         try {
             window.localStorage.removeItem(name);
-            alert("操作成功！");
         }catch (e) {
             alert("操作失败！请重新操作~")
         }
@@ -24,6 +75,8 @@
         var r=confirm("确定进行此操作？")
         if(r) {
             removeStore("HASLUCKYDATA");
+            removeStore("HASCLICK");
+            alert("操作成功！");
         } else {
             return
         }

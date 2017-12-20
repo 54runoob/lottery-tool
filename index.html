@@ -3,25 +3,29 @@
   <head>
     <title>酒会抽奖系统</title>
     <meta charset="utf-8">
-    <link href="style.css" rel="stylesheet">
+    <link href="css/style.css?v=0.1" rel="stylesheet">
   </head>
   <body>
+  <!--第一屏-->
+
   <div class="lottery-fullscreen">
     <!--[if lt IE 10]>
     <p class="browsehappy">您的浏览器太老了，请到<a href="http://browsehappy.com/">下载一个新版浏览器</a>。</p>
     <![endif]-->
-    <nav>
-      <a href="?all">所有人</a>
-      <a href="?tester">组1</a>
-      <a href="?apper">组2</a>
-      <a href="?member">组3</a>
-      <a href="?wder">组4</a>
-      <a href="reset.html">设置</a>
+    <nav class="menu">
+      <!--<li><a href="?all">ALL</a></li>-->
+      <!--<li><a href="?tester">组1</a></li>-->
+      <!--<li><a href="?apper">组2</a></li>-->
+      <!--<li><a href="?member">组3</a></li>-->
+      <!--<li><a href="?wder">组4</a></li>-->
+      <li><a href="reset.html">设置</a></li>
+      <li><a href="help.html">帮助</a></li>
+      <li><a href="javascript:void(0)" id="back">返回</a></li>
     </nav>
     <button id="go" data-text-start="按空格开始" data-text-stop="按空格停止" data-action="start"></button>
     <div id="container">
       <ul id="balls">
-        <div class="reference"></div>
+        <div class="reference" id="reference"></div>
       </ul>
       <!--中奖list-->
       <div class="lottery-title">中奖名单:</div>
@@ -31,8 +35,9 @@
 
     <!--抽奖按钮
     <div class="lottery-btn">抽奖</div>-->
+    <div id="tips"></div>
   </div>
-    <script src="sea.js"></script>
+    <script src="js/sea.js"></script>
     <script>
       function getStore(name) {
         if (!name) return;
@@ -45,12 +50,12 @@
         return value
       }
       var query = location.search.slice(1) || 'all';
-      seajs.use(['./lucky', './data-' + query], function(Lucky, data) {
+      seajs.use(['./js/lucky', './js/data/data-' + query], function(Lucky, data) {
 //        console.log(data);
         var hasLuckyData = getStore('HASLUCKYDATA');
         if(hasLuckyData) {
           for (var j=0;j<hasLuckyData.length;j++) {
-            $("#lucky-balls").append('<li class="selected" style="left: 350px; top: 150px;">' + hasLuckyData[j].name +'</li>')
+            $("#lucky-balls").append('<li class="selected">' + hasLuckyData[j].name +'</li>')
             for (var i=0;i<data.length; i++) {
 //              console.log(hasLuckyData[j].name)
               if(data[i] == hasLuckyData[j].name.toString()) {
@@ -60,6 +65,11 @@
               }
             }
           }
+        }
+        if(data&&data.length==0){
+          console.log("先导入参与抽奖的用户名单")
+          $("#tips").text("先导入参与抽奖的用户名单")
+          return
         }
 //        console.log(data)
 //        console.log(getStore('HASLUCKYDATA'));

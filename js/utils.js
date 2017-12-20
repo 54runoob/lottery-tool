@@ -39,6 +39,40 @@ define(function(require, exports, module){
         removeStore: function(name) {
             if (!name) return
             window.localStorage.removeItem(name);
+        },
+        /*
+         * 8进制加密
+         */
+        EnEight: function (str){
+            var monyer = new Array();
+            var i,s;
+            for(i=0;i<str.length;i++) {
+                monyer+="\\"+str.charCodeAt(i).toString(8);
+            }
+            str = monyer;
+            return str
+        },
+        /*
+         * 8进制解密
+          */
+        DeEight: function(str){
+            var monyer = new Array();
+            var i;
+            var s=str.split("\\");
+            for(i=1;i<s.length;i++){
+                monyer+=String.fromCharCode(parseInt(s[i],8));
+            }
+            str=monyer;
+            return str;
+        },
+        /**
+         * 获取随机色
+         */
+        getColorByRandom: function(colorList) {
+            var colorIndex = Math.floor(Math.random()*colorList.length);
+            var color = colorList[colorIndex];
+            colorList.splice(colorIndex,1);
+            return color;
         }
     }
 });

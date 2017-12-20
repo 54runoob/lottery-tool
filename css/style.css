@@ -1,0 +1,361 @@
+body {
+  font: 20px "Hiragino Sans GB", sans-serif;
+  /*background: #eee;*/
+}
+
+ul li {
+  list-style: none;
+}
+
+#container {
+  width: 900px;
+  margin: 10px auto;
+  position: relative;
+}
+
+#balls {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  height: 500px;
+}
+
+#balls li,
+#lucky-balls li {/*球体样式*/
+  position: absolute;
+  left: 420px;
+  top: 470px;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  font-size: 16px;
+  background: #333;
+  color: #fff;
+  opacity: .9;/*球体透明度*/
+  text-align: center;
+  line-height: 60px;
+  border-radius: 30px;
+  word-break: keep-all;
+  cursor: pointer;
+}
+
+#go {
+  width: 200px;
+  height: 50px;
+  display: block;
+  margin: 0 auto;
+  font-size: 22px;
+  border: none;
+  background: none;
+  color: #999;
+}
+nav {
+  position: fixed;
+  top: 16px;
+}
+nav a {
+  color: #999;
+}
+
+#balls li.selected {
+  color: #fff;
+  background: #e21536;
+  font-size: 50px;
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
+  opacity: 1;
+  border-radius: 100px;
+  -webkit-transition: 0.3s ease-in;
+  -webkit-transition-property: width, height,opacity, font;
+  z-index: 100 !important;
+}
+
+#lucky-balls {
+  padding: 10px 20px 20px 20px;
+  margin: 0px 0 10px 0;
+  list-style: none;
+  overflow: hidden;
+  zoom:1;
+}
+
+#lucky-balls li {
+  position: relative;
+  left: auto !important;
+  top: auto !important;
+  width: 60px !important;
+  height: 60px !important;
+  float: left;
+  margin: 5px 10px;
+  font-weight: bold;
+  color: #fff;
+  background: #e21536;
+}
+
+/*new*/
+.lottery-fullscreen{
+  font-family: "Microsoft YaHei","Lantinghei SC",'Open Sans Extrabold',"Helvetica Neue",Helvetica,Arial,sans-serif;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /*text-align: center;*/
+  background: #fff url("../images/background.png") no-repeat center bottom;
+}
+.browsehappy {
+  margin: .2em 0;
+  background: #ccc;
+  color: #000;
+  padding: .2em 0
+}
+.lottery-title{
+  color:#e21536;
+  font-weight: bold;
+  font-size:30px;
+}
+.lottery-btn{
+  width: 100px;
+  height: 60px;
+  position:fixed;
+  right: 10%;
+  top: 50%;
+  margin-top:-30px;
+  border:1px solid #000;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 60px;
+}
+.lottery-btn:hover{
+  color: #fff;
+  background: #e21536;
+}
+#balls .reference{
+  display: none;
+  content: "";
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  /*line-height: 200px;*/
+  z-index: 99;
+  top: 150px;
+  text-align: center;
+  left:50%;
+  margin-left: -100px;
+  background: url('../images/reference.png') no-repeat;
+  background-size: 100%;
+  animation: shake 1s 1 linear;
+}
+#lucky-balls li.selected{
+  opacity: .9;
+}
+#lucky-balls li.selected:hover{
+  animation: shake2 .5s 3 linear;
+}
+
+@keyframes shake {
+  0%{
+    transform:scale(0);
+    -ms-transform:scale(0);
+    -webkit-transform:scale(0);
+    -o-transform:scale(0);
+    -moz-transform:scale(0);
+  }
+  100%{
+    transform:scale(1);
+    -ms-transform:scale(1);
+    -webkit-transform:scale(1);
+    -o-transform:scale(1);
+    -moz-transform:scale(1);
+  }
+  0%, 100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  33%{
+    -webkit-transform: translate(-70px,70px);
+    transform: translate(-70px,70px);
+    width:66px;
+    height:66px;
+  }
+  66% {
+    -webkit-transform: translate(70px,-90px);
+    transform: translate(70px,-90px);
+    width:132px;
+    height: 132px;
+  }
+}
+@keyframes shake2 {
+  0%, 100% {
+    -webkit-transform: translateX(0);
+  }
+
+  50%
+  {
+    -webkit-transform: translateY(-10px);
+  }
+
+}
+
+#tips{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  margin-left: -250px;
+  text-align: center;
+  font-size: 40px;
+  font-family: "Microsoft YaHei Light";
+}
+
+.menu{
+  position: fixed;
+  left: 0;
+  top: 50%;
+  width: 50px;
+  height: 150px;
+  margin-top: -75px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: rgba(226, 21, 54, 0.7);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  z-index:200;
+  overflow: hidden;
+}
+.menu li{
+  display: block;
+  width:100%;
+  vertical-align: middle;
+  box-sizing: border-box;
+  flex:1;
+  align-self:center;
+  position: relative;
+  background: rgba(226, 21, 54, 0.7);
+}
+.menu li:hover{
+  background: rgba(226, 21, 54, 1);
+}
+.menu li a{
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  position: absolute;
+  top:50%;
+  left:0;
+  width:100%;
+  display: block;
+  font-size:16px;
+  height: 20px;
+  margin-top:-10px;
+}
+
+/*第一屏*/
+.lottery-guide{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index:200;
+}
+.lottery-guide .guide-left{
+  position: absolute;
+  left:0;
+  width: 50%;
+  height: 100%;
+  /*background-color: #a58e37;*/
+  background: #fff url("../images/left-bg.png") no-repeat center bottom;
+  background-size: 100%;
+}
+.lottery-guide .guide-right{
+  position: absolute;
+  right:0;
+  width: 50%;
+  height: 100%;
+  /*background-color: #617f75;*/
+  background: #fff url("../images/right-bg.png") no-repeat center bottom;
+  background-size: 100%;
+}
+.lottery-guide .guide-text{
+  position: absolute;
+  width: 600px;
+  height: 200px;
+  font-size: 80px;
+  font-weight: bold;
+  top: 25%;
+  left: 50%;
+  margin-left: -300px;
+  margin-top:-100px;
+  text-align: center;
+  font-family: "Microsoft YaHei Light";
+  letter-spacing: 10px;
+  background:url("../images/text.png") no-repeat center bottom;
+  background-size: 100%;
+}
+.lottery-guide .guide-btn{
+  position: absolute;
+  width: 460px;
+  height: 100px;
+  top:50%;
+  left:50%;
+  margin-left: -230px;
+  background:url("../images/btn.png") no-repeat center bottom;
+  background-size: 100%;
+}
+.guide-btn:hover{
+  cursor: pointer;
+}
+/*.lottery-guide .guide-btn{*/
+  /*position: absolute;*/
+  /*width: 250px;*/
+  /*font-size:45px;*/
+  /*font-family: "Microsoft YaHei Light";*/
+  /*font-weight: 100;*/
+  /*top:60%;*/
+  /*left:50%;*/
+  /*margin-left: -125px;*/
+  /*text-align: center;*/
+  /*background-color: #a9a636;*/
+  /*color: #fff;*/
+  /*border: 0 none;*/
+  /*border-radius: 50px;*/
+  /*padding: 5px 10px;*/
+  /*box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);*/
+  /*outline: none;*/
+/*}*/
+/*.lottery-guide .guide-btn:active,*/
+/*.guide-btn:visited,*/
+/*.guide-btn:hover{*/
+  /*outline: none;*/
+  /*cursor: pointer;*/
+  /*background-color: #a99443;*/
+/*}*/
+.guide-left.close{
+  animation: leftMove 2s 1 linear;
+}
+.guide-right.close{
+  animation: rightMove 2s 1 linear;
+}
+@keyframes leftMove
+{
+  0%   {left:0; }
+  25%  {left:-25%;}
+  50%  {left:-50%;}
+  75%  {left:-75%; }
+  100% {left:-100%;display: none;}
+}
+@keyframes rightMove
+{
+  0%   {right:0; }
+  25%  {right:-25%;}
+  50%  {right:-50%;}
+  75%  {right:-75%; }
+  100% {right:-100%;display: none;}
+}
+
