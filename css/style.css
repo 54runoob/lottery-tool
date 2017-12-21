@@ -229,15 +229,12 @@ nav a {
   font-family: "Microsoft YaHei Light";
 }
 
-.menu{
+.menu,.aside-menu{
   position: fixed;
-  left: 0;
   top: 50%;
   width: 50px;
   height: 150px;
   margin-top: -75px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
   background: rgba(226, 21, 54, 0.7);
   color: #fff;
   display: flex;
@@ -247,7 +244,18 @@ nav a {
   z-index:200;
   overflow: hidden;
 }
-.menu li{
+.menu{
+  left: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.aside-menu{
+  right: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.menu li,
+.aside-menu li{
   display: block;
   width:100%;
   vertical-align: middle;
@@ -257,10 +265,13 @@ nav a {
   position: relative;
   background: rgba(226, 21, 54, 0.7);
 }
-.menu li:hover{
+.menu li:hover,
+.aside-menu li:hover{
+  cursor: pointer;
   background: rgba(226, 21, 54, 1);
 }
-.menu li a{
+.menu li a,
+.aside-menu li .handle{
   color: #fff;
   text-align: center;
   text-decoration: none;

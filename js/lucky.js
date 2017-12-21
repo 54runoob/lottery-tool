@@ -182,17 +182,40 @@ define(function(require, exports, module) {
       var that = this
 
       // bind button
-      var trigger = document.querySelector('#go')
+      var trigger = document.querySelector('#go');
+      var tag = document.querySelector("#handle");
       trigger.innerHTML = trigger.getAttribute('data-text-start')
+      tag.innerHTML = tag.getAttribute('data-text-start')
       trigger.addEventListener('click', go, false)
+      tag.addEventListener('click', handle, false)
 
       function go() {
         if (trigger.getAttribute('data-action') === 'start') {
           trigger.setAttribute('data-action', 'stop')
           trigger.innerHTML = trigger.getAttribute('data-text-stop')
+          tag.setAttribute('data-action', 'stop')
+          tag.innerHTML = tag.getAttribute('data-text-stop')
           that.start()
         }
         else {
+          trigger.setAttribute('data-action', 'start')
+          trigger.innerHTML = trigger.getAttribute('data-text-start')
+          tag.setAttribute('data-action', 'start')
+          tag.innerHTML = tag.getAttribute('data-text-start')
+          that.stop()
+        }
+      }
+      function handle() {
+        if (tag.getAttribute('data-action') === 'start') {
+          tag.setAttribute('data-action', 'stop')
+          tag.innerHTML = tag.getAttribute('data-text-stop')
+          trigger.setAttribute('data-action', 'stop')
+          trigger.innerHTML = trigger.getAttribute('data-text-stop')
+          that.start()
+        }
+        else {
+          tag.setAttribute('data-action', 'start')
+          tag.innerHTML = tag.getAttribute('data-text-start')
           trigger.setAttribute('data-action', 'start')
           trigger.innerHTML = trigger.getAttribute('data-text-start')
           that.stop()
@@ -286,6 +309,15 @@ define(function(require, exports, module) {
         }
       }, false)
 
+      // 绑定点击抽奖事件
+      //$("#handle").on("click",function(){
+      //  handle()
+      //});
+      $("#sure").on("click",function(){
+        that.moveLucky()
+        $('#lucky-balls li').eq(0).click()
+        $("#reference").hide()
+      })
     },
 
     start: function() {

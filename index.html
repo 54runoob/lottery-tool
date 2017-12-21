@@ -3,7 +3,7 @@
   <head>
     <title>酒会抽奖系统</title>
     <meta charset="utf-8">
-    <link href="css/style.css?v=0.2" rel="stylesheet">
+    <link href="css/style.css?v=0.3" rel="stylesheet">
   </head>
   <body>
   <!--第一屏-->
@@ -23,8 +23,18 @@
       <li><a href="javascript:void(0)" id="back">返回</a></li>
     </nav>
     <!--抽奖开始和抽奖结束备用按钮-->
-    <div class="handle" id="handle">
-    </div>
+    <nav class="aside-menu">
+      <li>
+        <div class="handle" id="handle" data-text-start="开始" data-text-stop="停止" data-action="start">
+        </div>
+      </li>
+      <li>
+        <div class="handle" id="sure">
+          确定
+        </div>
+      </li>
+    </nav>
+
     <button id="go" data-text-start="按空格开始" data-text-stop="按空格停止" data-action="start"></button>
     <div id="container">
       <ul id="balls">
