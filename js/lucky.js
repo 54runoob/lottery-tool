@@ -23,8 +23,10 @@ define(function(require, exports, module) {
   var RIGIDITY = 4 // 弹性系数：2 -钢球 4 - 橡胶球，越大越软，建议小于 10
 
 
-  function User(name, options) {
+  function User(id,name,company, options) {
+    this.id = id
     this.name = name
+    this.company =  company
     this.options = options || {}
 
     this.el = null
@@ -44,7 +46,7 @@ define(function(require, exports, module) {
   }
 
   User.prototype.createEl = function() {
-    this.el = $('<li>' + this.name + '</li>').appendTo('#balls')
+    this.el = $('<li data-id='+ this.id +'><p class="company">' + this.company + '</p><p class="name">' + this.name + '</p></li>').appendTo('#balls')
     this.width = this.el.width()
     this.height = this.el.height()
     var colorList = ["#B5FF91","#94DBFF",
@@ -159,8 +161,8 @@ define(function(require, exports, module) {
     init: function(data) {
       this.data = data
 
-      this.users = data.map(function(name) {
-        return new User(name);
+      this.users = data.map(function(item) {
+        return new User(item.id,item.name,item.company);
       })
 
       this._bindUI()
@@ -200,11 +202,21 @@ define(function(require, exports, module) {
       // bind #lucky-balls
       $('#lucky-balls').on('click', 'li', function(e) {
         var el = $(e.target)
-        var name = el.text()
-        var options = that.data[name]
-
-        if (options) {
-          that.addItem(name, options)
+        var id = el.data("id")
+        console.log(id)
+        var name = ""
+        var company = ""
+        var options = {}
+        that.data.forEach(function(user) {
+          if(user.id == id) {
+            options = user
+            name = user.name
+            company = user.company
+          }
+        })
+        console.log(options)
+        if (!options) {
+          that.addItem(id,name,company, options)
           that.hit()
           el.remove()
         }
@@ -213,12 +225,12 @@ define(function(require, exports, module) {
       // bind #balls
       $('#balls').on('click', 'li', function(e) {
         var el = $(e.target)
-        var name = el.text()
+        var id = el.data("id")
 
         for (var i = 0; i < that.users.length; i++) {
           var user = that.users[i]
 
-          if (user.name === name) {
+          if (user.id === id) {
             that.moveLucky()
             if (that.luckyUser !== user) {
               that.setLucky(user)
@@ -310,7 +322,7 @@ define(function(require, exports, module) {
         //console.log(user)
         // if (z < user.zIndex) {
         for(var i=0;i<_lucky_list.length;i++){
-          if(user.name == _lucky_list[i]) {
+          if(user.id == _lucky_list[i].id) {
             lucky = user
             //z = user.zIndex
             //user.stop()
@@ -334,14 +346,14 @@ define(function(require, exports, module) {
     removeItem: function(item) {
       for (var i = 0; i < this.users.length; i++) {
         var user = this.users[i]
-        if (user === item) {
+        if (user.id === item.id) {
           this.users.splice(i, 1)
         }
       }
     },
 
-    addItem: function(name, options) {
-      this.users.push(new User(name, options))
+    addItem: function(id,name,company, options) {
+      this.users.push(new User(id,name,company, options))
     },
 
     moveLucky: function() { // 已中奖的不会参与到之后的每一轮抽奖

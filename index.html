@@ -3,7 +3,7 @@
   <head>
     <title>酒会抽奖系统</title>
     <meta charset="utf-8">
-    <link href="css/style.css?v=0.1" rel="stylesheet">
+    <link href="css/style.css?v=0.2" rel="stylesheet">
   </head>
   <body>
   <!--第一屏-->
@@ -22,6 +22,9 @@
       <li><a href="help.html">帮助</a></li>
       <li><a href="javascript:void(0)" id="back">返回</a></li>
     </nav>
+    <!--抽奖开始和抽奖结束备用按钮-->
+    <div class="handle" id="handle">
+    </div>
     <button id="go" data-text-start="按空格开始" data-text-stop="按空格停止" data-action="start"></button>
     <div id="container">
       <ul id="balls">
@@ -55,10 +58,10 @@
         var hasLuckyData = getStore('HASLUCKYDATA');
         if(hasLuckyData) {
           for (var j=0;j<hasLuckyData.length;j++) {
-            $("#lucky-balls").append('<li class="selected">' + hasLuckyData[j].name +'</li>')
+            $("#lucky-balls").append('<li class="selected"><p class="company">' +hasLuckyData[j].company + '</p><p class="name">' + hasLuckyData[j].name +'</p></li>')
             for (var i=0;i<data.length; i++) {
 //              console.log(hasLuckyData[j].name)
-              if(data[i] == hasLuckyData[j].name.toString()) {
+              if(data[i].id == hasLuckyData[j].id) {
 //                console.log(i);
                 data.splice(i, 1);
                 break;

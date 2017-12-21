@@ -1,3 +1,25 @@
-define(["张三","李四","王五","孙六","张1","李2","王3","孙4","张5","李6","王7","孙8",
-    "张9","李10","王11","孙12"
+define([
+    {id:"001",name:"李总",company:"火货电商"},
+    {id:"002",name:"马总",company:"阿里巴巴"},
+    {id:"003",name:"马总",company: "腾讯集团"},
+    {id:"007",name:"李总",company:"火货电商"},
+    {id:"008",name:"孙总",company:"阿里妈妈"},
+    {id:"009",name:"牛总",company:"蒙牛集团"},
+    {id:"010",name:"古总",company:"拼多多集团"},
+    {id:"011",name:"梅总",company:"美团公司"},
+    {id:"012",name:"张三",company:"火货电商"},
+    {id:"013",name:"李四",company:"阿里巴巴"},
+    {id:"014",name:"马总",company: "腾讯集团"},
+    {id:"015",name:"李姓朱",company:"猪栏集团"},
+    {id:"016",name:"吴广德",company:"广德集团"},
+    {id:"017",name:"吴好广",company:"好广集团"},
+    {id:"018",name:"金总",company:"蚂蚁金服"},
+    {id:"019",name:"詹姆斯",company:"骑士集团"},
+    {id:"020",name:"科比",company:"比科公司"},
+    {id:"021",name:"纳尼",company:"去哪儿"},
+    {id:"022",name:"嗯哼",company: "嗯嗯哼哼"},
+    {id:"023",name:"诸葛亮",company:"茅庐公司"},
+    {id:"024",name:"张飞",company:"桃园集团"},
+    {id:"025",name:"刘备",company:"桃园集团"},
+    {id:"026",name:"关羽",company:"桃园集团"}
 ])

@@ -39,6 +39,25 @@ ul li {
   word-break: keep-all;
   cursor: pointer;
 }
+#balls li .company,
+#lucky-balls li .company{
+  font-size:12px;
+  line-height: 14px;
+}
+#balls li .name,
+#lucky-balls li .name{
+  font-size:14px;
+  line-height: 14px;
+}
+
+#balls li.selected .company{
+  font-size:30px;
+  line-height: 35px;
+}
+#balls li.selected .name{
+  font-size:40px;
+  line-height: 50px;
+}
 
 #go {
   width: 200px;
