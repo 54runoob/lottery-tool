@@ -43,20 +43,26 @@ ul li {
 #lucky-balls li .company{
   font-size:12px;
   line-height: 14px;
+  margin-bottom: 0;
+  margin-top: 1.2em;
 }
 #balls li .name,
 #lucky-balls li .name{
   font-size:14px;
   line-height: 14px;
+  margin-top: 5px;
 }
 
 #balls li.selected .company{
   font-size:30px;
   line-height: 35px;
+  margin-bottom: 0;
+  margin-top: 2em;
 }
 #balls li.selected .name{
   font-size:40px;
   line-height: 50px;
+  margin-top: 10px;
 }
 
 #go {
