@@ -4,6 +4,16 @@
     <title>酒会抽奖系统</title>
     <meta charset="utf-8">
     <link href="css/style.css?v=0.4" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166756784-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-166756784-1');
+    </script>
+
   </head>
   <body>
   <!--第一屏-->
@@ -13,11 +23,6 @@
     <p class="browsehappy">您的浏览器太老了，请到<a href="http://browsehappy.com/">下载一个新版浏览器</a>。</p>
     <![endif]-->
     <nav class="menu">
-      <!--<li><a href="?all">ALL</a></li>-->
-      <!--<li><a href="?tester">组1</a></li>-->
-      <!--<li><a href="?apper">组2</a></li>-->
-      <!--<li><a href="?member">组3</a></li>-->
-      <!--<li><a href="?wder">组4</a></li>-->
       <li><a href="reset.html">设置</a></li>
       <li><a href="help.html">帮助</a></li>
       <li><a href="javascript:void(0)" id="back">返回</a></li>
@@ -64,15 +69,12 @@
       }
       var query = location.search.slice(1) || 'all';
       seajs.use(['./js/lucky', './js/data/data-' + query], function(Lucky, data) {
-//        console.log(data);
         var hasLuckyData = getStore('HASLUCKYDATA');
         if(hasLuckyData) {
           for (var j=0;j<hasLuckyData.length;j++) {
             $("#lucky-balls").append('<li class="selected"><p class="company">' +hasLuckyData[j].company + '</p><p class="name">' + hasLuckyData[j].name +'</p></li>')
             for (var i=0;i<data.length; i++) {
-//              console.log(hasLuckyData[j].name)
               if(data[i].id == hasLuckyData[j].id) {
-//                console.log(i);
                 data.splice(i, 1);
                 break;
               }
@@ -84,8 +86,6 @@
           $("#tips").text("先导入参与抽奖的用户名单")
           return
         }
-//        console.log(data)
-//        console.log(getStore('HASLUCKYDATA'));
         Lucky.init(data)
       })
     </script>
